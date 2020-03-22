@@ -1,0 +1,23 @@
+package ru.geekbrains_Java_one_lesson_6_HW;
+
+import java.io.*;   //вот это включает библиотеку, но почитал форумы пишут, что это плохой тон и не приветствуется програм., есть только догатка - видимо речь про "*", но тогда что не плохой тон?
+
+public class Main {
+    public static void main(String[] args)throws IOException { // IOE тут наверное не нужно?
+        File file1 = new File ("File1.txt");
+        File file2 = new File ("File2.txt");
+
+        BufferedOutputStream bufOut = new BufferedOutputStream(new FileOutputStream(file1, true)); //начитался про буферный поток, штука классная (вот использовал)
+        BufferedInputStream bufRead = new BufferedInputStream(new FileInputStream(file2));
+
+        int i;
+        while((i = bufRead.read()) != -1) {     // стыдно признать, но с циклами у меня напряг, буду пересматривать лекцию..., поэтому копи-паст + адаптировал
+            bufOut.write(i);
+            System.out.print((char) i);     // вот это написал чтоб вывело результат в консоль, не работает :( (хочется увидеть результат...
+        }
+        bufOut.flush();
+        bufOut.close();
+        bufRead.close();
+    }
+
+}
